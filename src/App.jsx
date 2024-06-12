@@ -3,20 +3,28 @@ import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import "./App.css";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import Layout from "./components/Layout";
+import { useState } from "react";
+import Profile from "./pages/Profile";
+import "./App.css";
 
 function App() {
+  const [user, setUser] = useState(null);
+
   return (
     <>
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/detail/:id" element={<Detail />} />
-            <Route path="/sign_in" element={<SignIn />}></Route>
-            <Route path="/sign_up" element={<SignUp />}></Route>
+            <Route path="/" element={<Layout user={user} setUser={setUser} />}>
+              <Route index element={<Home />} />
+              <Route path="/detail/:id" element={<Detail />} />
+              <Route path="/profile" element={<Profile />} />
+            </Route>
+            <Route path="/sign_in" element={<SignIn setUser={setUser} />} />
+            <Route path="/sign_up" element={<SignUp />} />
           </Routes>
         </BrowserRouter>
       </Provider>
