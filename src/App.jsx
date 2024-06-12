@@ -4,6 +4,8 @@ import Detail from "./pages/Detail";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import "./App.css";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/sign_in" element={<SignIn />}></Route>
+            <Route path="/sign_up" element={<SignUp />}></Route>
           </Routes>
         </BrowserRouter>
       </Provider>
