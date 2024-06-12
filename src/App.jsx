@@ -19,9 +19,12 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout user={user} setUser={setUser} />}>
-              <Route index element={<Home />} />
+              <Route index element={<Home user={user} />} />
               <Route path="/detail/:id" element={<Detail />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route
+                path="/profile"
+                element={<Profile user={user} setUser={setUser} />}
+              />
             </Route>
             <Route path="/sign_in" element={<SignIn setUser={setUser} />} />
             <Route path="/sign_up" element={<SignUp />} />
