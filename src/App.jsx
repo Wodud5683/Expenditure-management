@@ -8,11 +8,12 @@ import { useState } from "react";
 import Profile from "./pages/Profile";
 import "./App.css";
 
+
 function App() {
   const [user, setUser] = useState(null);
 
   return (
-    <>     
+    <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout user={user} setUser={setUser} />}>
