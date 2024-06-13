@@ -8,7 +8,6 @@ export const getExpenses = async () => {
     return response.data;
   } catch (err) {
     console.log(err);
-    alert("");
   }
 };
 
@@ -20,7 +19,6 @@ export const getExpense = async ({ queryKey }) => {
     return response.data;
   } catch (err) {
     console.log(err);
-    alert("");
   }
 };
 
@@ -33,7 +31,6 @@ export const postExpense = async (newExpense) => {
     return response.data;
   } catch (err) {
     console.log(err);
-    alert("");
   }
 };
 
@@ -47,7 +44,6 @@ export const putExpense = async (updatedExpense) => {
     return response.data;
   } catch (err) {
     console.log(err);
-    alert("");
   }
 };
 
@@ -57,6 +53,5 @@ export const deleteputExpense = async (id) => {
     return response.data;
   } catch (err) {
     console.log(err);
-    alert("");
   }
 };
