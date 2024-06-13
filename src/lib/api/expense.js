@@ -8,7 +8,7 @@ export const getExpenses = async () => {
     return response.data;
   } catch (err) {
     console.log(err);
-    alert("이상한데?");
+    alert("");
   }
 };
 
@@ -20,7 +20,7 @@ export const getExpense = async ({ queryKey }) => {
     return response.data;
   } catch (err) {
     console.log(err);
-    alert("뭔가 이상한데?");
+    alert("");
   }
 };
 
@@ -33,7 +33,7 @@ export const postExpense = async (newExpense) => {
     return response.data;
   } catch (err) {
     console.log(err);
-    alert("진짜 뭔가 이상한데?");
+    alert("");
   }
 };
 
@@ -47,7 +47,7 @@ export const putExpense = async (updatedExpense) => {
     return response.data;
   } catch (err) {
     console.log(err);
-    alert("수정이 안되는데?");
+    alert("");
   }
 };
 
@@ -57,6 +57,6 @@ export const deleteputExpense = async (id) => {
     return response.data;
   } catch (err) {
     console.log(err);
-    alert("삭제가 안되는데?");
+    alert("");
   }
 };
