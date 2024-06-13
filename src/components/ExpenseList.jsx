@@ -69,7 +69,7 @@ export default function ExpenseList() {
     data: expenses = [],
     isLoading,
     error,
-  } = useQuery({ queryKey: ["expense"], queryFn: getExpenses });
+  } = useQuery({ queryKey: ["expenses"], queryFn: getExpenses });
 
   return (
     <Section>

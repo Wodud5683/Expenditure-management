@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { editExpense, deleteExpense } from "../redux/slices/expensesSlice";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { getExpense, putExpense, deleteputExpense } from "../lib/api/expense";
 
 const Container = styled.div`
   max-width: 800px;
@@ -61,16 +61,43 @@ const BackButton = styled(Button)`
 
 export default function Detail() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { id } = useParams();
-  const expenses = useSelector((state) => state.expenses);
 
-  const selectedExpense = expenses.find((element) => element.id === id);
+  const {
+    data: selectedExpense,
+    isLoading,
+    error,
+  } = useQuery({ queryKey: ["expenses", id], queryFn: getExpense });
 
-  const [date, setDate] = useState(selectedExpense.date);
-  const [item, setItem] = useState(selectedExpense.item);
-  const [amount, setAmount] = useState(selectedExpense.amount);
-  const [description, setDescription] = useState(selectedExpense.description);
+  const [date, setDate] = useState("");
+  const [item, setItem] = useState("");
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    if (selectedExpense) {
+      setDate(selectedExpense.date);
+      setItem(selectedExpense.item);
+      setAmount(selectedExpense.amount);
+      setDescription(selectedExpense.description);
+    }
+  }, [selectedExpense]);
+
+  const mutationEdit = useMutation({
+    mutationFn: putExpense,
+    onSuccess: () => {
+      navigate("/");
+      queryClient.invalidateQueries(["expense"]);
+    },
+  });
+
+  const mutationDilete = useMutation({
+    mutationFn: deleteputExpense,
+    onSuccess: () => {
+      navigate("/");
+      queryClient.invalidateQueries(["expense"]);
+    },
+  });
 
   const handleEdit = () => {
     const datePattern = /^\d{4}-\d{2}-\d{2}$/;
@@ -87,17 +114,15 @@ export default function Detail() {
       id: id,
       date: date,
       item: item,
-      amount: amount,
+      amount: parseInt(amount, 10),
       description: description,
     };
-
-    dispatch(editExpense(newExpense));
+    mutationEdit.mutate(newExpense);
     navigate("/");
   };
 
   const handleDelete = () => {
-    dispatch(deleteExpense({ id }));
-    navigate("/");
+    mutationDilete.mutate(id);
   };
 
   return (

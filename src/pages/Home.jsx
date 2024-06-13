@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import MonthNavigation from "../components/MonthNavigation";
 import ExpenseList from "../components/ExpenseList";
 import CreateExpense from "../components/CreateExpense";
-import { useSelector } from "react-redux";
+
 
 const Container = styled.main`
   max-width: 800px;

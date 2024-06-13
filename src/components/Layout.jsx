@@ -43,9 +43,9 @@ const UserAvatar = styled.img`
   margin-right: 10px;
 `;
 const UserName = styled.span`
-    color: white;
-    margin-right: 20px;
-`
+  color: white;
+  margin-right: 20px;
+`;
 const LogoutButton = styled.button`
   padding: 8px 12px;
   background-color: #ff4d4d;

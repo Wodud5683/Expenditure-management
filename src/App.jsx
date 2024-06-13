@@ -1,8 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
-import { Provider } from "react-redux";
-import store from "./redux/store";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Layout from "./components/Layout";
@@ -14,23 +12,21 @@ function App() {
   const [user, setUser] = useState(null);
 
   return (
-    <>
-      <Provider store={store}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Layout user={user} setUser={setUser} />}>
-              <Route index element={<Home user={user} />} />
-              <Route path="/detail/:id" element={<Detail />} />
-              <Route
-                path="/profile"
-                element={<Profile user={user} setUser={setUser} />}
-              />
-            </Route>
-            <Route path="/sign_in" element={<SignIn setUser={setUser} />} />
-            <Route path="/sign_up" element={<SignUp />} />
-          </Routes>
-        </BrowserRouter>
-      </Provider>
+    <>     
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout user={user} setUser={setUser} />}>
+            <Route index element={<Home user={user} />} />
+            <Route path="/detail/:id" element={<Detail />} />
+            <Route
+              path="/profile"
+              element={<Profile user={user} setUser={setUser} />}
+            />
+          </Route>
+          <Route path="/sign_in" element={<SignIn setUser={setUser} />} />
+          <Route path="/sign_up" element={<SignUp />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
